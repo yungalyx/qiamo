@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, Icon, Flex, Image, Spacer, Tag, Heading, Box, Skeleton, SkeletonCircle, Link, Code, SkeletonText } from '@chakra-ui/react'
 import { EmailIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import { FaInstagram, FaTwitter } from 'react-icons/fa'
+import { apolloClient } from "../api";
+import { gql } from '@apollo/client';
+
 
 const Profile = ({name, address, collection, holders, floor, isFollowing, img_url, ...rest}) => {
+
+    const query = `
+    
+    `
+
+    useEffect(() => {
+
+    })
    
     return (
         <Box p={12}>
