@@ -31,11 +31,9 @@ const CenteredNavBar = () => {
             <Flex p='2' gap={40} align='center'> 
                 {centeredPaths.map(i => {
                     if (i == 'Qiamo') {
-                        return <Heading> {i} </Heading>
+                        return <Heading key={i}> {i} </Heading>
                     } else {
-                        return <Link href={`/${i}`} key={i}>
-                            <a> {i} </a>
-                        </Link>
+                        return <Link href={`/${i}`} key={i}> {i} </Link>
                     }  
                 })}
             </Flex>

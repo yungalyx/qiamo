@@ -20,8 +20,6 @@ const ProjectDetailView = () => {
         ]).then(allResponse => {
             const transactionData = allResponse[0]
             const historicalData = allResponse[1]
-            console.log(transactionData)
-            console.log(historicalData)
             setCollectionData(historicalData.data.items[0])
             setOwner(transactionData.data.items[0].from_address)
             setLoading(false)

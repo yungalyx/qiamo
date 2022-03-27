@@ -51,4 +51,28 @@ const TokenCard = ({name, logo_url, type, quote, balance}) => {
 
 }
 
-export { Card, TokenCard }
+const TransactionCard = ({transactionName, value, from, to, date}) => {
+    const event = new Date(date)
+    return (
+        <Flex px={8} py={5} borderWidth='1px' gap={10} align="center" _hover={{ shadow: 'md' }}>
+            <Box w='28rem'>
+                <Heading size='md'> {transactionName} </Heading>
+                <Text> {event.toString()} </Text>
+            </Box>
+        
+            <Stat>
+                <StatNumber> From </StatNumber>
+                <StatLabel> {from} </StatLabel>
+                
+            </Stat>
+            <Stat>
+                <StatNumber> To </StatNumber>
+                <StatLabel>{to}</StatLabel>
+                
+            </Stat>
+
+        </Flex>
+    )
+}
+
+export { Card, TokenCard, TransactionCard }

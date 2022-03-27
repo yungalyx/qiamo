@@ -2,12 +2,14 @@ import { Flex, Link, StackDivider, VStack } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { Card } from '../components/card'
 import {CenteredNavBar, NavBar} from '../components/nav';
+import { getLensProfile } from '../api';
 
 
 export default function ProjectListView() {
     const [collections, setCollections] = useState([])
     
     useEffect(() => {
+        getLensProfile()
         fetch(`https://api.covalenthq.com/v1/1/nft_market/?key=ckey_283a0c7341354286ba303f60e50`).then(res => {
             return res.json()
         }).then(data => {
