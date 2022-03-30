@@ -7,11 +7,52 @@ import {
     VStack,
     Heading,
     Code,
+    Button,
     Grid,
     theme,
     Center,
   } from '@chakra-ui/react';
 import { NavBar } from '../components/nav';
+import Web3 from 'web3';
+
+const detectCurrentProvider = () => {
+    let provider;
+    if (window.ethereum) {
+        provider = window.ethereum;
+      
+    } else if (window.web3) {
+        provider = window.web3.currentProvider;
+    } else {
+        console.log("Non-Etherum Browser Detected, Please try metamask.")
+    }
+    return provider;
+}
+
+const metamaskConnect = async() => {
+    try {
+        const currentProvider = detectCurrentProvider()
+        if (currentProvider) {
+            const accounts = await window.ethereum.request({
+                method: "eth_requestAccounts",
+            })
+            console.log(accounts)
+            const web3 = new Web3(currentProvider)
+            const userAccount = await web3.eth.getAccounts();
+            const chainId = await web3.eth.getChainId();
+            const account = userAccount[0];
+            let ethBalance = await web3.eth.getBalance(account); 
+            ethBalance = web3.utils.fromWei(ethBalance, 'ether'); //Convert balance to wei
+            // saveUserInfo(ethBalance, account, chainId);
+            if (userAccount.length === 0) {
+            console.log('Please connect to meta mask');
+            }
+
+        }
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 
 // THIS IS THE AUTH / LANDING PAGE
 export default function LandingPage() {
@@ -27,6 +68,7 @@ export default function LandingPage() {
                     fontSize="2xl"
                     > Join now
                 </Link>
+                <Button onClick={metamaskConnect}> Connect with Metamask </Button>
                 <Text>
                    
                 </Text>
@@ -34,8 +76,6 @@ export default function LandingPage() {
             </Center>
 
         </Box>
-      
-       
     )
   }
   

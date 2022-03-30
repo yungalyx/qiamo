@@ -8,9 +8,6 @@ import { gql } from '@apollo/client';
 
 const Profile = ({name, address, collection, holders, floor, isFollowing, img_url, ...rest}) => {
 
-    const query = `
-    
-    `
 
     useEffect(() => {
 
