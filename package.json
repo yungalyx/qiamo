@@ -12,6 +12,7 @@
     "@testing-library/react": "^10.4.9",
     "@testing-library/user-event": "^12.8.3",
     "elo-rating": "^1.0.1",
+    "firebase": "^9.6.10",
     "framer-motion": "^4.1.17",
     "graphql": "^16.3.0",
     "metamask-react": "^2.3.0",
