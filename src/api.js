@@ -9,6 +9,7 @@ const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),
 })
 
+
 export const testQuery = async() => {
     const query = `
         query {
@@ -313,5 +314,48 @@ export const recommendedProfile = async() => {
   })
 
   console.log(response)
+
+}
+
+export const generateChallenge = async(address) => {
+  const query = `
+    query($request: ChallengeRequest!) {
+      challenge(request: $request) { text }
+    }
+  `
+  const response = await apolloClient.query({
+    query: gql(query),
+    variables: {
+      request: {
+        address,
+      }
+    }
+  })
+
+  return response;
+
+}
+
+
+export const authenticateLens = async(address, signature) => {
+  const query = `
+    mutation($request: SignedAuthChallenge!) { 
+      authenticate(request: $request) {
+        accessToken
+        refreshToken
+      }
+    }
+  `
+
+  const response = await apolloClient.mutate({
+    mutation: gql(query),
+    variables: {
+      request: {
+        address,
+        signature,
+      },
+    },
+  })
+  return response;
 
 }

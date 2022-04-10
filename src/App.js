@@ -17,6 +17,7 @@ import ProjectListView from './pages/ProjectListView';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ProjectDetailView from './pages/ProjectDetailView';
 import ProfileDetailView from './pages/ProfileDetailView';
+import RankingPage from './pages/RankingPage';
 import TestPage from './pages/TestPage';
 import { metaMaskProvider } from 'metamask-react';
 
@@ -27,6 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/ranking" element={<RankingPage />} />
           
           <Route path="/explore" element={<ProjectListView />} />
           <Route path='/project/:address/:chain_id' element={<ProjectDetailView />} />

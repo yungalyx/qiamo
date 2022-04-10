@@ -15,6 +15,8 @@ import {
 import { NavBar } from '../components/nav';
 import Web3 from 'web3';
 
+import { generateChallenge, authenticateLens } from '../api';
+
 const detectCurrentProvider = () => {
     let provider;
     if (window.ethereum) {
@@ -41,10 +43,18 @@ const metamaskConnect = async() => {
             const chainId = await web3.eth.getChainId();
             const account = userAccount[0];
             let ethBalance = await web3.eth.getBalance(account); 
+           
+            
             ethBalance = web3.utils.fromWei(ethBalance, 'ether'); //Convert balance to wei
-            // saveUserInfo(ethBalance, account, chainId);
             if (userAccount.length === 0) {
-            console.log('Please connect to meta mask');
+                alert('Please connect to meta mask');
+            } else {
+            
+                const challenge = await generateChallenge(userAccount[0])
+                const signature = await web3.eth.personal.sign(challenge.data.challenge.text, userAccount[0])
+
+                const accessTokens = await authenticateLens(userAccount[0], signature)
+                console.log(accessTokens)
             }
 
         }

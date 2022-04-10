@@ -75,4 +75,12 @@ const TransactionCard = ({transactionName, value, from, to, date}) => {
     )
 }
 
-export { Card, TokenCard, TransactionCard }
+const ImageCard = ({logo_url, name}) => {
+    return (<Box _hover={{ shadow: 'md' }} p={5}>
+        <Image borderRadius='full' boxSize='80px' src={logo_url} />
+        <Heading> {name} </Heading>
+    </Box>)
+
+}
+
+export { Card, TokenCard, TransactionCard, ImageCard }
