@@ -23,12 +23,16 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 export const dbRef = ref(getDatabase());
-get(dbRef, `projects/`).then((snapshot) => {
-  if (snapshot.exists()) {
-    console.log(snapshot.val());
-  } else {
-    console.log("No data available");
-  }
-}).catch((error) => {
-  console.error(error);
-});
+
+const database = getDatabase(app);
+
+export function updateScore(address, address2, score, score2) {
+  set(ref(database, 'projects/' + address), {
+    score: score
+  })
+  set(ref(database, 'projects/' + address2), {
+    score: score2
+  })
+  
+  
+}

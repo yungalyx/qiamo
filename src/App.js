@@ -29,7 +29,6 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/ranking" element={<RankingPage />} />
-          
           <Route path="/explore" element={<ProjectListView />} />
           <Route path='/project/:address/:chain_id' element={<ProjectDetailView />} />
           <Route path="/test" element={<TestPage/>} />

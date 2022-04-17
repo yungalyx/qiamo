@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Flex, Image, Spacer, Heading, Text, Box, Stat, StatGroup, StatLabel, StatNumber, StatHelpText, Skeleton, SkeletonCircle, StatArrow } from '@chakra-ui/react'
+import { Link, Flex, Image, Spacer, Heading, Text, Box, Stat, StatGroup, StatLabel, StatNumber, Center, StatHelpText, Skeleton, SkeletonCircle, StatArrow } from '@chakra-ui/react'
 import { useNavigate } from "react-router";
 
 const Card = ({name, followers, holders, floor, isFollowing, ...rest}) => {
@@ -76,9 +76,13 @@ const TransactionCard = ({transactionName, value, from, to, date}) => {
 }
 
 const ImageCard = ({logo_url, name}) => {
-    return (<Box _hover={{ shadow: 'md' }} p={5}>
-        <Image borderRadius='full' boxSize='80px' src={logo_url} />
-        <Heading> {name} </Heading>
+    return (<Box _hover={{ shadow: 'md' }} p={5} maxW='250px'>
+        <Center>
+            <Image borderRadius='md' boxSize='200px' src={logo_url} fallback={<Skeleton height='200px'/>}/>
+        </Center>
+        <Center>
+            <Heading> {name} </Heading>
+        </Center>
     </Box>)
 
 }
